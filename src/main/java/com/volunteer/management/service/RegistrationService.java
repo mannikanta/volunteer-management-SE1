@@ -5,5 +5,5 @@ import com.volunteer.management.dto.Volunteer;
 
 
 public interface RegistrationService {
-    public String registerVolunteer(Volunteer volunteer);
+    public Volunteer registerVolunteer(Volunteer volunteer);
 }

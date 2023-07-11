@@ -19,8 +19,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerVolunteer(@RequestBody Volunteer volunteer){
-        String response = registrationService.registerVolunteer(volunteer);
+    public Volunteer registerVolunteer(@RequestBody Volunteer volunteer){
+        Volunteer response = registrationService.registerVolunteer(volunteer);
         return response;
     }
 }
