@@ -14,14 +14,36 @@ import java.util.Date;
 public class Volunteer {
     // volunteer Id should be of length 8 and it should be unique and it should contain alphabets and digits
     @Id
-    @Column(name = "volunteerId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "volunteer_Id", nullable = false,unique = true)
     private String volunteerId;
 
-    @OneToOne(mappedBy = "volunteerId", cascade = CascadeType.ALL)
-    @JoinColumn(name = "personal_details_id")
-    private VolunteerPersonalDetails personalDetails;
+
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name="personal_details_id")
+    private  VolunteerPersonalDetails personalDetails;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_details_id")
     private VolunteerContactDetails contactDetails;
+
+
+    /*@OneToOne(mappedBy = "volunteer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="personal_details_id")
+    private  VolunteerPersonalDetails personalDetails;
+
+    @OneToOne(mappedBy = "volunteer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_details_id")
+    private VolunteerContactDetails contactDetails;*/
+
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "volunteer_personal_details_id")
+    private VolunteerPersonalDetails personalDetails;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "volunteer_contact_details_id")
+    private VolunteerContactDetails contactDetails;*/
+
 }

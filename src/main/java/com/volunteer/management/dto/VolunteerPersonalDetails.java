@@ -5,17 +5,24 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Entity
-@Table(name = "VolunteerPersonalDetails")
+@Entity(name = "personal_details")
 public class VolunteerPersonalDetails {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personal_details_id;
+    @Column(name = "personal_details_id")
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "volunteer_id")
-    private Volunteer volunteerId;
+    @OneToOne(mappedBy = "personalDetails")
+//    @JoinColumn(name = "volunteer_Id")
+    private Volunteer volunteer;
+
+//    @OneToOne(mappedBy = "personalDetails")
+//    private Volunteer volunteer;
+//   // @JoinColumn(name = "volunteerId")
+//    private Volunteer volunteerId;
 
     @Column(name = "volunteerFirstName")
     private String volunteerFirstName;
@@ -25,4 +32,6 @@ public class VolunteerPersonalDetails {
 
     @Column(name = "address")
     private String address;
+
+
 }
