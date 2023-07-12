@@ -1,8 +1,10 @@
 package com.volunteer.management.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -19,6 +21,10 @@ public class Volunteer {
 
     @Column(name = "volunteer_Id", nullable = false,unique = true)
     private String volunteerId;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "eventCreationDate")
+    private LocalDate volunteerRegistrationDate;
 
 
     @OneToOne( cascade = CascadeType.ALL)

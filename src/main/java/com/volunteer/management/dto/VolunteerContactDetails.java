@@ -1,9 +1,11 @@
 package com.volunteer.management.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 @Data
@@ -22,6 +24,7 @@ public class VolunteerContactDetails {
 //    @JoinColumn(name = "volunteer_Id")
     private Volunteer volunteer;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     @Column(name = "dateOfBirth")
     private Date dateOfBirth;
 
@@ -33,4 +36,8 @@ public class VolunteerContactDetails {
 
     @Column(name = "gender")
     private String gender;
+
+
+//    private List<String> skillSet;
+
 }
