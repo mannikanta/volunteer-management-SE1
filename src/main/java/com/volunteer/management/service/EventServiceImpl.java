@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,8 +39,14 @@ public class EventServiceImpl implements EventService{
 
 
     @Override
-    public List<Event> getAllEvents() {
-        return eventRepo.findAll();
+    public List<EventDto> getAllEvents() {
+        List<Event> event = eventRepo.findAll();
+        List<EventDto> eventDtoList = new ArrayList<>();
+        for(int i = 0; i<event.size(); i++){
+           EventDto dto = dtoToEntity.setEventDtoData(event.get(i));
+           eventDtoList.add(dto);
+        }
+        return eventDtoList;
     }
 
     @Override

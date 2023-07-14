@@ -18,18 +18,15 @@ public class CustomUserDetails implements UserDetails {
 
         super();
         this.user = user;
-        System.out.println("hi im in the constructor");
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        System.out.println("execution is here");
         return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
     }
 
     @Override
     public String getPassword() {
-        System.out.println(user.getPassword());
         return user.getPassword();
     }
 

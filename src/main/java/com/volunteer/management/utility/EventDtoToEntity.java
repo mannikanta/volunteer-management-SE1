@@ -29,4 +29,15 @@ public class EventDtoToEntity {
         event.setEventCreationDate(util.getDate());
         return event;
     }
+
+    public EventDto setEventDtoData(Event event){
+        EventDto eventDto = new EventDto();
+        eventDto.setId(event.getId());
+        eventDto.setEventName(event.getEventName());
+        eventDto.setEventDescription(event.getEventDescription());
+        eventDto.setEventLocation(event.getEventLocation());
+        eventDto.setEventDateTime(event.getEventDateTime().toString());
+        eventDto.setEventDuration(event.getEventDuration());
+        return eventDto;
+    }
 }

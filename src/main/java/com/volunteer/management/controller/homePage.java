@@ -11,9 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class homePage {
 
     @GetMapping("/home")
+    public ModelAndView displayHomePage(){
+        return new ModelAndView("homePage");
+
+    }
+
+    @GetMapping("/registrationPage")
     public ModelAndView showRegistrationPage(){
        return new ModelAndView("registration");
-        //return "redirect:/registration";
     }
 
     @GetMapping("/eventAdd")

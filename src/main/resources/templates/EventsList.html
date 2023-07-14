@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Of Events</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/home}">home</a>
+        </div>
+    </div>
+</nav>
+
+<br><br>
+<h1>List Of Events</h1>
+<table border="1px">
+    <thead>
+        <tr>
+            <td>Sno</td>
+            <td>Event Name</td>
+            <td>Event Description</td>
+            <td>Event Location</td>
+            <td>Event Date and Time</td>
+            <td>Event Duration</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="listOfEvents : ${events}">
+            <td th:text="${listOfEvents.id}"></td>
+            <td th:text="${listOfEvents.eventName}"></td>
+            <td th:text="${listOfEvents.eventDescription}"></td>
+            <td th:text="${listOfEvents.eventLocation}"></td>
+            <td th:text="${listOfEvents.eventDateTime}"></td>
+            <td th:text="${listOfEvents.eventDuration}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
