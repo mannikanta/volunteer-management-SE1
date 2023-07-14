@@ -1,4 +1,4 @@
-package com.volunteer.management.dto;
+package com.volunteer.management.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

@@ -1,11 +1,10 @@
-package com.volunteer.management.dto;
+package com.volunteer.management.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -23,7 +22,7 @@ public class Volunteer {
     private String volunteerId;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "eventCreationDate")
+    @Column(name = "volunteerCreationDate")
     private LocalDate volunteerRegistrationDate;
 
 

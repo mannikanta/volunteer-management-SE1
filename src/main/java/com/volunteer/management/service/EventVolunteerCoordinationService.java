@@ -1,6 +1,6 @@
 package com.volunteer.management.service;
 
-import com.volunteer.management.dto.Volunteer;
+import com.volunteer.management.entity.Volunteer;
 
 import java.util.List;
 

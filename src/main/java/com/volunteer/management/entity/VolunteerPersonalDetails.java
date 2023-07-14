@@ -1,8 +1,7 @@
-package com.volunteer.management.dto;
+package com.volunteer.management.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Entity(name = "personal_details")

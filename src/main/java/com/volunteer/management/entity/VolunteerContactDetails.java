@@ -1,4 +1,4 @@
-package com.volunteer.management.dto;
+package com.volunteer.management.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -37,7 +37,11 @@ public class VolunteerContactDetails {
     @Column(name = "gender")
     private String gender;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "availability")
+    private java.util.Date volunteerAvailability;
 
-//    private List<String> skillSet;
+    @ElementCollection
+    private List<String> skillSet;
 
 }

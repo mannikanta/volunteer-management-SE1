@@ -1,10 +1,9 @@
 package com.volunteer.management.service;
 
-import com.volunteer.management.dto.Volunteer;
-
-import java.util.List;
+import com.volunteer.management.dto.VolunteerDto;
+import com.volunteer.management.entity.Volunteer;
 
 
 public interface RegistrationService {
-    public Volunteer registerVolunteer(Volunteer volunteer);
+    public Volunteer registerVolunteer(VolunteerDto volunteer);
 }
