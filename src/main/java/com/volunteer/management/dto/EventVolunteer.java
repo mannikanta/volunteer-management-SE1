@@ -1,4 +1,4 @@
-package com.volunteer.management.model;
+package com.volunteer.management.dto;
 
 
 import lombok.*;

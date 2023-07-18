@@ -2,6 +2,7 @@ package com.volunteer.management.controller;
 
 import com.volunteer.management.dto.EventDto;
 import com.volunteer.management.dto.VolunteerDto;
+import com.volunteer.management.dto.VolunteerEventEnrollmentDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,14 @@ public class homePage {
         return new VolunteerDto();
     }
 
+    @GetMapping("/enrollPage")
+    public ModelAndView enrollPage(){
+        return new ModelAndView("Enroll");
+    }
+
+    @ModelAttribute("enrollDto")
+    public VolunteerEventEnrollmentDto volunteerEnrollmentDto(){
+        return new VolunteerEventEnrollmentDto();
+    }
 
 }

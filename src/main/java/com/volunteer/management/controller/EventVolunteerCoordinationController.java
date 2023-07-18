@@ -3,7 +3,7 @@ package com.volunteer.management.controller;
 
 import com.volunteer.management.entity.Volunteer;
 
-import com.volunteer.management.model.EventVolunteer;
+import com.volunteer.management.dto.EventVolunteer;
 import com.volunteer.management.service.EventVolunteerCoordinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

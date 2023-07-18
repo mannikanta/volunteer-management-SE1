@@ -46,9 +46,6 @@ public class Event {
     @Column(name = "volunteerStatus")
     private boolean isVolunteer;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "volunteerId")
-    private Volunteer volunteer;
-
-
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private EventVolunteerRelation eventVolunteerRelation;
 }

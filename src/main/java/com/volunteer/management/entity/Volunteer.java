@@ -34,9 +34,9 @@ public class Volunteer {
     @JoinColumn(name = "contact_details_id")
     private VolunteerContactDetails contactDetails;
 
-    @OneToOne
-    @JoinColumn(name = "eventName")
-    private Event event;
+//    @OneToOne
+//    @JoinColumn(name = "eventName")
+//    private Event event;
 
 
     /*@OneToOne(mappedBy = "volunteer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

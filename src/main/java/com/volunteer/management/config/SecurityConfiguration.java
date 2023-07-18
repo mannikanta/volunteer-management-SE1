@@ -1,5 +1,6 @@
 package com.volunteer.management.config;
 
+//import com.volunteer.management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +9,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
+import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import static org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter.Directive.*;
 
 
 @Configuration
@@ -19,9 +25,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
-
-//    @Autowired
-//    private UserService userService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -35,43 +38,35 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(authenticationProvider());
-//    }
 
 
+/*    this is working code
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/registrationPage").permitAll()
+                .antMatchers("/home").permitAll()
+                .antMatchers("/register").permitAll().
+                antMatchers("/enroll").permitAll()
+                .antMatchers("/addEvent","/eventAdd","/getAllEvents").hasAuthority("admin").anyRequest().authenticated().and().formLogin();
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().antMatchers(
-//                        "/register**","/home",
-//                        "/js/**",
-//                        "/css/**",
-//                        "/img/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login?logout")
-//                .permitAll();
-//    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                        "/register").permitAll()
-                     .antMatchers("/home").permitAll()
-                     .antMatchers("/addEvent").
-                hasAuthority("admin").anyRequest().authenticated().and().httpBasic();
+        http.authorizeRequests().antMatchers("/registrationPage").permitAll()
+                .antMatchers("/home").permitAll()
+                .antMatchers("/register").permitAll().
+                antMatchers("/enroll").permitAll()
+                .antMatchers("/addEvent","/eventAdd","/getAllEvents").hasAuthority("admin").anyRequest().authenticated().and().formLogin()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/home")
+                .permitAll();;
 
     }
+
 
 }

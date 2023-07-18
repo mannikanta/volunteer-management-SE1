@@ -1,10 +1,13 @@
 package com.volunteer.management.controller;
 
 import com.volunteer.management.dto.EventDto;
+import com.volunteer.management.dto.ResponseDto;
 import com.volunteer.management.entity.Event;
 import com.volunteer.management.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.support.BindingAwareConcurrentModel;
+import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +19,10 @@ public class EventManagementController {
         @Autowired
         EventService eventService;
 
+        @Autowired
+        ResponseDto responseDto;
+
+
 //        @PostMapping("/addEvent")
 //        public String addEvent(@RequestBody Event event){
 //                String status = eventService.addEvent(event);
@@ -23,11 +30,11 @@ public class EventManagementController {
 //        }
 
         @PostMapping("/addEvent")
-        public ModelAndView addEvent(@ModelAttribute("eventDto") EventDto eventDto){
+        public ModelAndView addEvent(@ModelAttribute("eventDto") EventDto eventDto, Model model){
                 String response = eventService.addEvent(eventDto);
-                // change return statement
-                System.out.println(response);
-                return new ModelAndView("Success");
+                responseDto.setResponse_Message(response);
+                model.addAttribute("status", responseDto);
+                return new ModelAndView("Response");
         }
 
         @GetMapping("/getAllEvents")
