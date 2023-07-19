@@ -1,16 +1,14 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Registration</title>
+    <title>Match Volunteers</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 </head>
 <body>
-
-<!-- create navigation bar ( header) -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -21,14 +19,16 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/home}">Home</a>
+            <a class="navbar-brand" href="#" th:href="@{/adminHome}">home</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 
-<br>
-<br>
-<!-- Create HTML registration form -->
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -39,30 +39,30 @@
                     to our awesome app!</div>
             </div>
 
-            <h1>Enroll For an Event </h1>
+            <h1>Match Volunteers with Event</h1>
 
-            <form th:action="@{/enroll}" th:method="post" th:object="${enrollDto}">
+            <form th:action="@{/sortVolunteers}" th:method="post" th:object="${matchDto}">
 
                 <div class="form-group">
-                    <label class="control-label" for="volunteerId">Volunteer Id </label>
-                    <input id="volunteerId" class="form-control" th:field="*{volunteerId}"
+                    <label class="control-label" for="eventName">Event Name </label>
+                    <input id="eventName" class="form-control" th:field="*{eventName}"
                            required autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="firstName"> Event Name </label> <input
-                        id="firstName" class="form-control" th:field="*{eventName}"
-                        required autofocus="autofocus" />
+                    <label class="control-label" for="sortBy">Sort volunteer based on before or after event is posted</label>
+                    <input id="sortBY" class="form-control" th:field="*{sortVolunteersbyDate}"
+                    required autofocus="autofocus" placeholder="please enter either before or after words">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Enroll</button>
-                    <span>Already registered? <a href="/" th:href="@{/login}">Login
-								here</a></span>
+                    <button type="submit" class="btn btn-success">Match Volunteers</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.volunteer.management.service;
 
+import com.volunteer.management.dto.VolunteerDto;
 import com.volunteer.management.entity.Event;
 import com.volunteer.management.entity.Volunteer;
 import com.volunteer.management.repository.EventRepo;
 import com.volunteer.management.repository.VolunteerRepo;
+import com.volunteer.management.utility.VolunteerEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +21,31 @@ public class EventVolunteerCoordinationServiceImpl implements EventVolunteerCoor
     @Autowired
     VolunteerRepo volunteerRepo;
 
+    @Autowired
+    VolunteerEntityToDto entityToDto;
+
     @Override
-    public List<Volunteer> fetchVolunteerByDateOfEventCreation(String eventName) {
+    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter) {
         Event event = eventRepo.findByEventName(eventName);
-        List<Volunteer> existingVolunteers = new ArrayList<>();
-        List<Volunteer> newVolunteers = new ArrayList<>();
+//        List<Volunteer> existingVolunteers = new ArrayList<>();
+//        List<Volunteer> newVolunteers = new ArrayList<>();
+        List<Volunteer> fetchedVolunteers = new ArrayList<>();
         List<Volunteer> allVolunteers = volunteerRepo.findAll();
+        List<VolunteerDto> dtoList = new ArrayList<>();
         for(int i = 0; i < allVolunteers.size(); i++){
-            if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) < 0){
-                existingVolunteers.add(allVolunteers.get(i));
-                System.out.println("hae existing volunteer are you interested");
-            }else if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) >= 0){
-                 newVolunteers.add(allVolunteers.get(i));
-                System.out.println("hae new volunteer");
+            if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) < 0 && beforeOrAfter.toLowerCase().equals("before")){
+                fetchedVolunteers.add(allVolunteers.get(i));
+
+            }else if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) >= 0 && beforeOrAfter.toLowerCase().equals("after")){
+                 fetchedVolunteers.add(allVolunteers.get(i));
             }
         }
-        System.out.println(event.getEventName()+" "+event.getEventLocation()+" "+event.getEventDescription()+" "+event.getEventCreationDate());
-        return null;
+        if(fetchedVolunteers.size() == 0){
+            return dtoList;
+        }else {
+          dtoList = entityToDto.convertEntityToDto(fetchedVolunteers);
+        }
+
+       return dtoList;
     }
 }

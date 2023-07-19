@@ -1,10 +1,10 @@
 package com.volunteer.management.service;
 
-import com.volunteer.management.entity.Volunteer;
+import com.volunteer.management.dto.VolunteerDto;
 
 import java.util.List;
 
 public interface EventVolunteerCoordinationService {
 
-    public List<Volunteer> fetchVolunteerByDateOfEventCreation(String eventName);
+    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter);
 }

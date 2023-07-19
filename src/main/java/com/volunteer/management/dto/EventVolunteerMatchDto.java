@@ -8,13 +8,13 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
-public class EventVolunteer {
+public class EventVolunteerMatchDto {
 
     private String eventName;
 
     // before Event creation Date or after creation date
     // this should be a radio button
-    private String sortVolunteers;
+    private String sortVolunteersbyDate;
 
 }
 

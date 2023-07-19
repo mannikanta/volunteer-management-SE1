@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class RegistrationDtoToEntity {
@@ -37,7 +39,13 @@ public class RegistrationDtoToEntity {
         contactDetails.setEmailAddress(volunteerDto.getEmailAddress());
         contactDetails.setGender(volunteerDto.getGender());
         contactDetails.setVolunteerAvailability(Date.valueOf(volunteerDto.getVolunteerAvailability()));
-        contactDetails.setSkillSet(Arrays.asList(volunteerDto.getSkillSet()));
+        List<String> skillsOfVolunteer = new ArrayList<>();
+        String[] skillLists = volunteerDto.getSkillSet().split(",");
+        for(int i = 0; i < skillLists.length; i++){
+            skillsOfVolunteer.add(skillLists[i]);
+        }
+        contactDetails.setSkillSet(skillsOfVolunteer);
+        //contactDetails.setSkillSet(Arrays.asList(volunteerDto.getSkillSet()));
         volunteerEntity.setContactDetails(contactDetails);
         volunteerEntity.setVolunteerRegistrationDate(util.getDate());
 

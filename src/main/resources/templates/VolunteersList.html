@@ -34,24 +34,20 @@
 <h1>List Of Events</h1>
 <table border="1px">
     <thead>
-        <tr>
-            <td>Sno</td>
-            <td>Event Name</td>
-            <td>Event Description</td>
-            <td>Event Location</td>
-            <td>Event Date and Time</td>
-            <td>Event Duration</td>
-        </tr>
+    <tr>
+        <td>Sno</td>
+        <td>Volunteer User Id</td>
+        <td>Volunteer Name</td>
+        <td>Volunteer Mail Id</td>
+    </tr>
     </thead>
     <tbody>
-        <tr th:each="listOfEvents : ${events}">
-            <td th:text="${listOfEvents.id}"></td>
-            <td th:text="${listOfEvents.eventName}"></td>
-            <td th:text="${listOfEvents.eventDescription}"></td>
-            <td th:text="${listOfEvents.eventLocation}"></td>
-            <td th:text="${listOfEvents.eventDateTime}"></td>
-            <td th:text="${listOfEvents.eventDuration}"></td>
-        </tr>
+    <tr th:each="listVol : ${listOfVolunteers}">
+        <td th:text="${listVol.id}"></td>
+        <td th:text="${listVol.volunteerId}"></td>
+        <td th:text="${listVol.volunteerFirstName}"></td>
+        <td th:text="${listVol.emailAddress}"></td>
+    </tr>
     </tbody>
 </table>
 </body>
