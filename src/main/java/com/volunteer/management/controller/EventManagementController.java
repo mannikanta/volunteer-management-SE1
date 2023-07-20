@@ -38,7 +38,7 @@ public class EventManagementController {
         }
 
         @GetMapping("/getAllEvents")
-        public ModelAndView getAllEvents(Model model){
+        public ModelAndView getAllEvents(Model model) throws Exception {
                 List<EventDto> eventsList = eventService.getAllEvents();
                 model.addAttribute("events",eventsList);
                return new ModelAndView("EventsList");

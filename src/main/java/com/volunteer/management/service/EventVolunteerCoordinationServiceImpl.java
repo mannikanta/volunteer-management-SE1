@@ -25,25 +25,31 @@ public class EventVolunteerCoordinationServiceImpl implements EventVolunteerCoor
     VolunteerEntityToDto entityToDto;
 
     @Override
-    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter) {
-        Event event = eventRepo.findByEventName(eventName);
+    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter) throws Exception {
+        List<VolunteerDto> dtoList = new ArrayList<>();
+        try {
+
+            Event event = eventRepo.findByEventName(eventName);
 //        List<Volunteer> existingVolunteers = new ArrayList<>();
 //        List<Volunteer> newVolunteers = new ArrayList<>();
-        List<Volunteer> fetchedVolunteers = new ArrayList<>();
-        List<Volunteer> allVolunteers = volunteerRepo.findAll();
-        List<VolunteerDto> dtoList = new ArrayList<>();
-        for(int i = 0; i < allVolunteers.size(); i++){
-            if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) < 0 && beforeOrAfter.toLowerCase().equals("before")){
-                fetchedVolunteers.add(allVolunteers.get(i));
+            List<Volunteer> fetchedVolunteers = new ArrayList<>();
+            List<Volunteer> allVolunteers = volunteerRepo.findAll();
 
-            }else if(allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) >= 0 && beforeOrAfter.toLowerCase().equals("after")){
-                 fetchedVolunteers.add(allVolunteers.get(i));
+            for (int i = 0; i < allVolunteers.size(); i++) {
+                if (allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) < 0 && beforeOrAfter.toLowerCase().equals("before")) {
+                    fetchedVolunteers.add(allVolunteers.get(i));
+
+                } else if (allVolunteers.get(i).getVolunteerRegistrationDate().compareTo(event.getEventCreationDate()) >= 0 && beforeOrAfter.toLowerCase().equals("after")) {
+                    fetchedVolunteers.add(allVolunteers.get(i));
+                }
             }
-        }
-        if(fetchedVolunteers.size() == 0){
-            return dtoList;
-        }else {
-          dtoList = entityToDto.convertEntityToDto(fetchedVolunteers);
+            if (fetchedVolunteers.size() == 0) {
+                return dtoList;
+            } else {
+                dtoList = entityToDto.convertEntityToDto(fetchedVolunteers);
+            }
+        }catch (Exception e){
+            throw new Exception("Oops! Some thing went wrong");
         }
 
        return dtoList;

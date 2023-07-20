@@ -32,7 +32,7 @@ public class EventVolunteerCoordinationController {
     MailSenderService mailSenderService;
 
     @PostMapping("/sortVolunteers")
-    public ModelAndView getVolunteerByDateOfEventCreation(@ModelAttribute("matchDto") EventVolunteerMatchDto eventVolunteerMatchDto, Model model){
+    public ModelAndView getVolunteerByDateOfEventCreation(@ModelAttribute("matchDto") EventVolunteerMatchDto eventVolunteerMatchDto, Model model) throws Exception {
 
         List<VolunteerDto> fetchedVolunteers = coordinationService.fetchVolunteerByDateOfEventCreation(eventVolunteerMatchDto.getEventName(), eventVolunteerMatchDto.getSortVolunteersbyDate());
         String responsePage = null;

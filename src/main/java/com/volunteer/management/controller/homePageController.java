@@ -14,7 +14,7 @@ public class homePageController {
 
     @GetMapping("/home")
     public ModelAndView displayHomePage(){
-        return new ModelAndView("homePage");
+        return new ModelAndView("homePage1");
 
     }
 

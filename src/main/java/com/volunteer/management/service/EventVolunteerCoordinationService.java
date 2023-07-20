@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EventVolunteerCoordinationService {
 
-    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter);
+    public List<VolunteerDto> fetchVolunteerByDateOfEventCreation(String eventName, String beforeOrAfter) throws Exception;
 }

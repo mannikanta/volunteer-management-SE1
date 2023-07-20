@@ -58,7 +58,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register").permitAll().
                 antMatchers("/enrollPage").permitAll().
                 antMatchers("/matchDto").permitAll()
-                .antMatchers("/addEvent","/eventAdd","/getAllEvents", "/sortVolunteers").hasAuthority("admin").anyRequest().authenticated().and().formLogin()
+                .antMatchers("/getAllEvents").permitAll()
+                .antMatchers("/enroll").permitAll()
+                .antMatchers("/addEvent","/eventAdd", "/sortVolunteers").hasAuthority("admin").anyRequest().authenticated().and().formLogin()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)

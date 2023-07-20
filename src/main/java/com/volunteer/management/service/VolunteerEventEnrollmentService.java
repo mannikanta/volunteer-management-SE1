@@ -4,5 +4,5 @@ import com.volunteer.management.dto.VolunteerEventEnrollmentDto;
 
 public interface VolunteerEventEnrollmentService {
 
-    public String enrollForEvent(VolunteerEventEnrollmentDto enrollmentDto);
+    public String enrollForEvent(VolunteerEventEnrollmentDto enrollmentDto) throws Exception;
 }

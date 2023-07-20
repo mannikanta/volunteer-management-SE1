@@ -39,12 +39,17 @@ public class EventServiceImpl implements EventService{
 
 
     @Override
-    public List<EventDto> getAllEvents() {
-        List<Event> event = eventRepo.findAll();
+    public List<EventDto> getAllEvents() throws Exception {
         List<EventDto> eventDtoList = new ArrayList<>();
-        for(int i = 0; i<event.size(); i++){
-           EventDto dto = dtoToEntity.setEventDtoData(event.get(i));
-           eventDtoList.add(dto);
+        try {
+            List<Event> event = eventRepo.findAll();
+
+            for (int i = 0; i < event.size(); i++) {
+                EventDto dto = dtoToEntity.setEventDtoData(event.get(i));
+                eventDtoList.add(dto);
+            }
+        }catch (Exception e){
+            throw new Exception("OOPS Some Thing went wrong");
         }
         return eventDtoList;
     }
